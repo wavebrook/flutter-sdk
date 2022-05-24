@@ -21,20 +21,20 @@ class ConsentManager {
     return await _channel.invokeMethod('isReplied');
   }
 
-  static Future<void> request({bool withOptOut = false}) async {
+  static Future<bool?> request({bool withOptOut = false}) async {
     Map<String, dynamic> values = {
       'withOptOut': withOptOut,
     };
 
-    await _channel.invokeMethod('request', values);
+    return await _channel.invokeMethod('request', values);
   }
 
-  static Future<void> requestOnce({bool withOptOut = false}) async {
+  static Future<bool?> requestOnce({bool withOptOut = false}) async {
     Map<String, dynamic> values = {
       'withOptOut': withOptOut,
     };
 
-    await _channel.invokeMethod('requestOnce', values);
+    return await _channel.invokeMethod('requestOnce', values);
   }
 
   static Future<void> set(bool granted) async {

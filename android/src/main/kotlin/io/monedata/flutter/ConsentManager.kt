@@ -75,9 +75,9 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
 
         val withOptOut = call.argument<Boolean>("withOptOut") ?: false
 
-        ConsentManager.request(activity, withOptOut)
-
-        result.success(null)
+        ConsentManager.request(activity, withOptOut) {
+            result.success(it?.granted)
+        }
     }
 
     private fun requestOnce(call: MethodCall, result: Result) {
@@ -85,9 +85,9 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
 
         val withOptOut = call.argument<Boolean>("withOptOut") ?: false
 
-        ConsentManager.requestOnce(activity, withOptOut)
-
-        result.success(null)
+        ConsentManager.requestOnce(activity, withOptOut) {
+            result.success(it?.granted)
+        }
     }
 
     private fun set(call: MethodCall, result: Result) {
