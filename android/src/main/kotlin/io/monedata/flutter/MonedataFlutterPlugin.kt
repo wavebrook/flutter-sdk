@@ -10,7 +10,6 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.monedata.Monedata
-import io.monedata.networks.Network
 
 class MonedataFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
 
@@ -66,8 +65,6 @@ class MonedataFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
 
-            "disableNetwork"           -> disableNetwork(call, result)
-
             "enableBackgroundLocation" -> enableBackgroundLocation(call, result)
 
             "foundAdapters"            -> result.success(Monedata.foundAdapters)
@@ -98,21 +95,6 @@ class MonedataFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
         activityAwarePlugins.forEach { it.onReattachedToActivityForConfigChanges(binding) }
     }
 
-
-    private fun disableNetwork(call: MethodCall, result: Result) {
-        val networkId = call.argument<String> ("network")
-        val value     = call.argument<Boolean>("value")
-
-        requireNotNull(value)
-
-        val network = Network.values().find { it.id == networkId }
-
-        requireNotNull(network)
-
-        Monedata.disableNetwork(context, network, value)
-
-        result.success(null)
-    }
 
     private fun enableBackgroundLocation(call: MethodCall, result: Result) {
         val enable = call.argument<Boolean>("enable")

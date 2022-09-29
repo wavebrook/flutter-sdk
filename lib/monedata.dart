@@ -1,25 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
-import 'network.dart';
 
 class Monedata {
   static const CHANNEL_MAIN = "monedata";
 
   static const MethodChannel _channel = const MethodChannel(CHANNEL_MAIN);
-
-  static Future<void> disableNetwork(Network network, bool value) async {
-    String? name = describeEnum(network);
-
-    Map<String, dynamic> values = {
-      'network': name,
-      'value': value,
-    };
-
-    await _channel.invokeMethod('disableNetwork', values);
-  }
 
   static Future<void> enableBackgroundLocation(bool? enable) async {
     Map<String, dynamic> values = {
