@@ -11,6 +11,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.monedata.consent.ConsentManager
 import io.monedata.flutter.MonedataFlutterPlugin.Companion.CHANNEL_MAIN
+import io.monedata.flutter.extensions.toMap
 
 class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
 
@@ -49,9 +50,13 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
 
             "canCollectPersonalData" -> result.success(ConsentManager.canCollectPersonalData(context))
 
+            "enableTcfMonitor"       -> enableTcfMonitor(call, result)
+
+            "exists"                 -> result.success(ConsentManager.exists(context))
+
             "isGranted"              -> result.success(ConsentManager.isGranted(context))
 
-            "isReplied"              -> result.success(ConsentManager.isReplied(context))
+            "get"                    -> get(call, result)
 
             "request"                -> request(call, result)
 
@@ -69,6 +74,22 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
         activity = binding.activity
     }
 
+
+    private fun enableTcfMonitor(call: MethodCall, result: Result) {
+        val enable = call.argument<Boolean>("enable")
+
+        requireNotNull(enable)
+
+        ConsentManager.enableTcfMonitor(context, enable)
+
+        result.success(null)
+    }
+
+    private fun get(call: MethodCall, result: Result) {
+        val data = ConsentManager.get(context)
+
+        result.success(data?.toMap())
+    }
 
     private fun request(call: MethodCall, result: Result) {
         val activity = requireNotNull(activity)

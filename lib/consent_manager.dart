@@ -13,12 +13,26 @@ class ConsentManager {
     return await _channel.invokeMethod('canCollectPersonalData');
   }
 
-  static Future<bool?> get isGranted async {
-    return await _channel.invokeMethod('isGranted');
+  static Future<Map<String, dynamic>?> get data async {
+    dynamic result = await _channel.invokeMethod('get');
+
+    return result?.cast<String, dynamic>();
   }
 
-  static Future<bool> get isReplied async {
-    return await _channel.invokeMethod('isReplied');
+  static Future<void> enableTcfMonitor(bool enable) async {
+    Map<String, dynamic> values = {
+      'enable': enable,
+    };
+
+    await _channel.invokeMethod('enableTcfMonitor', values);
+  }
+
+  static Future<bool> get exists async {
+    return await _channel.invokeMethod('exists');
+  }
+
+  static Future<bool?> get isGranted async {
+    return await _channel.invokeMethod('isGranted');
   }
 
   static Future<bool?> request({bool withOptOut = false}) async {
