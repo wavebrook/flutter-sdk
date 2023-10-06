@@ -1,3 +1,7 @@
+## 1.6.1
+
+* Updated to SDK 1.6.1
+
 ## 1.6.0
 
 * Updated to SDK 1.6.0
