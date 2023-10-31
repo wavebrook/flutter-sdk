@@ -7,6 +7,15 @@ class Monedata {
 
   static const MethodChannel _channel = const MethodChannel(CHANNEL_MAIN);
 
+  static Future<void> disableAdapter(String id, bool disable) async {
+    Map<String, dynamic> values = {
+      'disable': disable,
+      'id': id
+    };
+
+    await _channel.invokeMethod('disableAdapter', values);
+  }
+
   static Future<void> enableBackgroundLocation(bool? enable) async {
     Map<String, dynamic> values = {
       'enable': enable,

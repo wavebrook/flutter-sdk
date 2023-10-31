@@ -65,6 +65,8 @@ class MonedataFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
 
+            "disableAdapter"           -> disableAdapter(call, result)
+
             "enableBackgroundLocation" -> enableBackgroundLocation(call, result)
 
             "foundAdapters"            -> result.success(Monedata.foundAdapters)
@@ -95,6 +97,18 @@ class MonedataFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
         activityAwarePlugins.forEach { it.onReattachedToActivityForConfigChanges(binding) }
     }
 
+
+    private fun disableAdapter(call: MethodCall, result: Result) {
+        val disable = call.argument<Boolean>("disable")
+        val id      = call.argument<String> ("id")
+
+        requireNotNull(disable)
+        requireNotNull(id)
+
+        Monedata.disableAdapter(context, id, disable)
+
+        result.success(null)
+    }
 
     private fun enableBackgroundLocation(call: MethodCall, result: Result) {
         val enable = call.argument<Boolean>("enable")
