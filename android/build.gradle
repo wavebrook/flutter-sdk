@@ -1,5 +1,5 @@
 group 'io.monedata.flutter'
-version '1.7.5'
+version '1.7.6'
 
 buildscript {
     ext.kotlin_version = '1.7.0'
@@ -26,6 +26,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'io.monedata.flutter'
     compileSdkVersion 33
 
     defaultConfig {
@@ -42,6 +43,6 @@ android {
 }
 
 dependencies {
-    implementation 'io.monedata:android-sdk:1.7.5'
+    implementation 'io.monedata:android-sdk:1.7.6'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
