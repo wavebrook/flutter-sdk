@@ -1,3 +1,7 @@
+## 1.7.9
+
+* Updated to SDK 1.7.9
+
 ## 1.7.8
 
 * Updated to SDK 1.7.8

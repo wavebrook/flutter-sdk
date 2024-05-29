@@ -1,5 +1,5 @@
 group 'io.monedata.flutter'
-version '1.7.8'
+version '1.7.9'
 
 buildscript {
     ext.kotlin_version = '1.8.0'
@@ -43,6 +43,6 @@ android {
 }
 
 dependencies {
-    implementation 'io.monedata:android-sdk:1.7.8'
+    implementation 'io.monedata:android-sdk:1.7.9'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
