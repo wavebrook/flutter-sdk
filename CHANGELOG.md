@@ -1,3 +1,7 @@
+## 1.8.4
+
+* Updated to SDK 1.8.4
+
 ## 1.8.3+1
 
 * Updated to SDK 1.8.3.1
