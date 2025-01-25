@@ -1,6 +1,6 @@
 name: monedata
 description: Monedata Flutter plugin
-version: 1.8.4
+version: 1.8.4+1
 homepage: https://monedata.io
 
 environment:
