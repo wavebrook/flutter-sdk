@@ -7,6 +7,10 @@ class Monedata {
 
   static const MethodChannel _channel = const MethodChannel(CHANNEL_MAIN);
 
+  static Future<void> clearUserData() async {
+    await _channel.invokeMethod('clearUserData');
+  }
+
   static Future<void> disableAdapter(String id, bool disable) async {
     Map<String, dynamic> values = {
       'disable': disable,
