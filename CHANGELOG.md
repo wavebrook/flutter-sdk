@@ -1,3 +1,11 @@
+## 1.8.6
+
+* Updated to SDK 1.8.6
+
+## 1.8.5
+
+* Updated to SDK 1.8.5
+
 ## 1.8.4+1
 
 * Added support for newer versions of Gradle and Kotlin
