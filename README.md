@@ -1,8 +1,8 @@
-# Monedata SDK for Flutter
+# Wavebrook Flutter SDK Repository
 
-[![pub package](https://img.shields.io/pub/v/monedata.svg)](https://pub.dev/packages/monedata)
+This repository contains the source code of all Wavebrook SDKs.
 
-A Flutter plugin to integrate the Monedata SDK.
+## Packages
 
-## Usage
-To use this plugin, add `monedata` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+- **[wavebrook](wavebrook/)**: The Wavebrook SDK.
+- **[wavebrook_netsignal](wavebrook_netsignal/)**: The Wavebrook NetSignal SDK (depends on `wavebrook`).

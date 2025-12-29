@@ -1,0 +1,23 @@
+name: wavebrook
+description: Wavebrook Flutter plugin
+version: 2.0.0
+homepage: https://wavebrook.com
+
+environment:
+  sdk: ">=2.12.0 <4.0.0"
+  flutter: ">=1.20.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.wavebrook.flutter
+        pluginClass: WavebrookFlutterPlugin
