@@ -63,35 +63,39 @@ class WavebrookFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
-        when (call.method) {
+        try {
+            when (call.method) {
 
-            "clearUserData"            -> clearUserData(result)
+                "clearUserData"            -> clearUserData(result)
 
-            "disableAdapter"           -> disableAdapter(call, result)
+                "disableAdapter"           -> disableAdapter(call, result)
 
-            "enableBackgroundLocation" -> enableBackgroundLocation(call, result)
+                "enableBackgroundLocation" -> enableBackgroundLocation(call, result)
 
-            "foundAdapters"            -> result.success(Wavebrook.foundAdapters)
+                "foundAdapters"            -> result.success(Wavebrook.foundAdapters)
 
-            "getVersionName"           -> result.success(Wavebrook.versionName)
+                "getVersionName"           -> result.success(Wavebrook.versionName)
 
-            "initialize"               -> initialize(call, result)
+                "initialize"               -> initialize(call, result)
 
-            "isInitialized"            -> result.success(Wavebrook.isInitialized)
+                "isInitialized"            -> result.success(Wavebrook.isInitialized)
 
-            "isReady"                  -> result.success(Wavebrook.isReady)
+                "isReady"                  -> result.success(Wavebrook.isReady)
 
-            "isStarted"                -> result.success(Wavebrook.isStarted)
+                "isStarted"               -> result.success(Wavebrook.isStarted)
 
-            "start"                    -> start(result)
+                "start"                    -> start(result)
 
-            "startAdaptersActivity"    -> startAdaptersActivity(result)
+                "startAdaptersActivity"    -> startAdaptersActivity(result)
 
-            "stop"                     -> stop(result)
+                "stop"                     -> stop(result)
 
-            "waitForInitialization"    -> waitForInitialization(result)
+                "waitForInitialization"    -> waitForInitialization(result)
 
-            else                       -> result.notImplemented()
+                else                       -> result.notImplemented()
+            }
+        } catch (e: Exception) {
+            result.error("WAVEBROOK_ERROR", e.message, null)
         }
     }
 
@@ -108,10 +112,9 @@ class WavebrookFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
 
     private fun disableAdapter(call: MethodCall, result: Result) {
         val disable = call.argument<Boolean>("disable")
-        val id      = call.argument<String> ("id")
-
-        requireNotNull(disable)
-        requireNotNull(id)
+            ?: return result.error("INVALID_ARGUMENT", "Missing required argument: disable", null)
+        val id = call.argument<String>("id")
+            ?: return result.error("INVALID_ARGUMENT", "Missing required argument: id", null)
 
         Wavebrook.disableAdapter(context, id, disable)
 
@@ -127,10 +130,12 @@ class WavebrookFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
     }
 
     private fun initialize(call: MethodCall, result: Result) {
-        val assetKey = call.argument<String> ("assetKey")
+        val assetKey = call.argument<String>("assetKey")
         val start    = call.argument<Boolean>("start") ?: true
 
-        require(!assetKey.isNullOrEmpty())
+        if (assetKey.isNullOrEmpty()) {
+            return result.error("INVALID_ARGUMENT", "Missing required argument: assetKey", null)
+        }
 
         Wavebrook.initialize(context, assetKey, start) {
             result.success(it)
@@ -156,7 +161,7 @@ class WavebrookFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
     }
 
     private fun waitForInitialization(result: Result) {
-        Wavebrook.waitForInitialization { 
+        Wavebrook.waitForInitialization {
             result.success(it)
         }
     }

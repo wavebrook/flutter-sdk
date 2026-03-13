@@ -46,27 +46,31 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
-        when (call.method) {
+        try {
+            when (call.method) {
 
-            "canCollectPersonalData" -> result.success(ConsentManager.canCollectPersonalData(context))
+                "canCollectPersonalData" -> result.success(ConsentManager.canCollectPersonalData(context))
 
-            "enableTcfMonitor"       -> enableTcfMonitor(call, result)
+                "enableTcfMonitor"       -> enableTcfMonitor(call, result)
 
-            "exists"                 -> result.success(ConsentManager.exists(context))
+                "exists"                 -> result.success(ConsentManager.exists(context))
 
-            "isGranted"              -> result.success(ConsentManager.isGranted(context))
+                "isGranted"              -> result.success(ConsentManager.isGranted(context))
 
-            "get"                    -> get(call, result)
+                "get"                    -> get(call, result)
 
-            "request"                -> request(call, result)
+                "request"                -> request(call, result)
 
-            "requestOnce"            -> requestOnce(call, result)
+                "requestOnce"            -> requestOnce(call, result)
 
-            "set"                    -> set(call, result)
+                "set"                    -> set(call, result)
 
-            "setIabString"           -> setIabString(call, result)
+                "setIabString"           -> setIabString(call, result)
 
-            else                     -> result.notImplemented()
+                else                     -> result.notImplemented()
+            }
+        } catch (e: Exception) {
+            result.error("CONSENT_ERROR", e.message, null)
         }
     }
 
@@ -77,8 +81,7 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
 
     private fun enableTcfMonitor(call: MethodCall, result: Result) {
         val enable = call.argument<Boolean>("enable")
-
-        requireNotNull(enable)
+            ?: return result.error("INVALID_ARGUMENT", "Missing required argument: enable", null)
 
         ConsentManager.enableTcfMonitor(context, enable)
 
@@ -92,7 +95,8 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
     }
 
     private fun request(call: MethodCall, result: Result) {
-        val activity = requireNotNull(activity)
+        val activity = this.activity
+            ?: return result.error("NO_ACTIVITY", "Cannot show consent dialog: no activity available", null)
 
         val withOptOut = call.argument<Boolean>("withOptOut") ?: false
 
@@ -102,7 +106,8 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
     }
 
     private fun requestOnce(call: MethodCall, result: Result) {
-        val activity = requireNotNull(activity)
+        val activity = this.activity
+            ?: return result.error("NO_ACTIVITY", "Cannot show consent dialog: no activity available", null)
 
         val withOptOut = call.argument<Boolean>("withOptOut") ?: false
 
@@ -113,8 +118,7 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
 
     private fun set(call: MethodCall, result: Result) {
         val granted = call.argument<Boolean>("granted")
-
-        requireNotNull(granted)
+            ?: return result.error("INVALID_ARGUMENT", "Missing required argument: granted", null)
 
         ConsentManager.set(context, granted)
 
@@ -123,8 +127,7 @@ class ConsentManager : ActivityAware, FlutterPlugin, MethodCallHandler {
 
     private fun setIabString(call: MethodCall, result: Result) {
         val value = call.argument<String>("value")
-
-        requireNotNull(value)
+            ?: return result.error("INVALID_ARGUMENT", "Missing required argument: value", null)
 
         ConsentManager.setIabString(context, value)
 
