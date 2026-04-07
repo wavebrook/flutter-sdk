@@ -1,3 +1,7 @@
+## 1.1.3
+
+* Updated to SDK 1.1.3
+
 ## 1.1.2
 
 * Updated to SDK 1.1.2
