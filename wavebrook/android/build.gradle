@@ -1,5 +1,5 @@
 group 'com.wavebrook.flutter'
-version '2.1.0'
+version '2.1.1'
 
 buildscript {
     ext.kotlin_version = '1.8.0'
@@ -55,5 +55,5 @@ android {
 }
 
 dependencies {
-    implementation 'com.wavebrook:core:2.1.0'
+    implementation 'com.wavebrook:core:2.1.1'
 }
