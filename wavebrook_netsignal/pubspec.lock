@@ -188,10 +188,10 @@ packages:
     dependency: "direct main"
     description:
       name: wavebrook
-      sha256: ecebfe39c70c1424c154811d34a7c6fcbdbb5e5094c3dff07ea9edddc5a2d869
+      sha256: "0e27f01f9b8057efc4243679a2626cea3406c0a303bb3a8b1c5c00567ad80782"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
 sdks:
   dart: ">=3.9.0-0 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"
