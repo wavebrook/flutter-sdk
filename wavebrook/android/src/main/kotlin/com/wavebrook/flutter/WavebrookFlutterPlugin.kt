@@ -149,9 +149,7 @@ class WavebrookFlutterPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
     }
 
     private fun startAdaptersActivity(result: Result) {
-        val success = activity?.let { Wavebrook.startAdaptersActivity(it) } == true
-
-        result.success(success)
+        result.success(false)
     }
 
     private fun stop(result: Result) {
