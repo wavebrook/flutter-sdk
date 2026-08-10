@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart' show TargetPlatform, defaultTargetPlatform;
 import 'package:flutter/services.dart';
 
+import 'consent_data.dart';
 import 'wavebrook.dart';
 
 class ConsentManager {
@@ -20,12 +21,14 @@ class ConsentManager {
     return await _channel.invokeMethod<bool>('canCollectPersonalData') ?? false;
   }
 
-  static Future<Map<String, dynamic>?> get data async {
+  static Future<ConsentData?> get data async {
     if (!_isSupported) return null;
 
     dynamic result = await _channel.invokeMethod('get');
 
-    return result?.cast<String, dynamic>();
+    final map = result?.cast<String, dynamic>();
+
+    return map == null ? null : ConsentData.fromMap(map);
   }
 
   static Future<void> enableTcfMonitor(bool enable) async {
