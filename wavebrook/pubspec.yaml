@@ -1,6 +1,6 @@
 name: wavebrook
 description: Wavebrook Flutter plugin
-version: 2.1.3
+version: 2.2.0-beta.1
 homepage: https://wavebrook.com
 
 environment:
@@ -20,4 +20,6 @@ flutter:
     platforms:
       android:
         package: com.wavebrook.flutter
+        pluginClass: WavebrookFlutterPlugin
+      ios:
         pluginClass: WavebrookFlutterPlugin

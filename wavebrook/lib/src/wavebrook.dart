@@ -8,13 +8,18 @@ class Wavebrook {
 
   static const MethodChannel _channel = const MethodChannel(CHANNEL_MAIN);
 
+  static bool get _isSupported =>
+      defaultTargetPlatform == TargetPlatform.android ||
+      defaultTargetPlatform == TargetPlatform.iOS;
+
   static Future<void> clearUserData() async {
-    if (defaultTargetPlatform != TargetPlatform.android) return;
+    if (!_isSupported) return;
+
     await _channel.invokeMethod('clearUserData');
   }
 
   static Future<void> disableAdapter(String id, bool disable) async {
-    if (defaultTargetPlatform != TargetPlatform.android) return;
+    if (!_isSupported) return;
 
     Map<String, dynamic> values = {
       'disable': disable,
@@ -35,14 +40,15 @@ class Wavebrook {
   }
 
   static Future<List<String>> get foundAdapters async {
-    if (defaultTargetPlatform != TargetPlatform.android) return [];
+    if (!_isSupported) return [];
 
     final List<dynamic>? result = await _channel.invokeMethod('foundAdapters');
+
     return result?.cast<String>() ?? [];
   }
 
   static Future<bool> initialize(String assetKey, {bool start = true}) async {
-    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    if (!_isSupported) return false;
 
     Map<String, dynamic> values = {
       'assetKey': assetKey,
@@ -53,42 +59,50 @@ class Wavebrook {
   }
 
   static Future<bool> get isInitialized async {
-    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    if (!_isSupported) return false;
+
     return await _channel.invokeMethod<bool>('isInitialized') ?? false;
   }
 
   static Future<bool> get isReady async {
-    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    if (!_isSupported) return false;
+
     return await _channel.invokeMethod<bool>('isReady') ?? false;
   }
 
   static Future<bool> get isStarted async {
-    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    if (!_isSupported) return false;
+
     return await _channel.invokeMethod<bool>('isStarted') ?? false;
   }
 
   static Future<void> start() async {
-    if (defaultTargetPlatform != TargetPlatform.android) return;
+    if (!_isSupported) return;
+
     await _channel.invokeMethod('start');
   }
 
   static Future<bool> startAdaptersActivity() async {
-    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    if (!_isSupported) return false;
+
     return await _channel.invokeMethod<bool>('startAdaptersActivity') ?? false;
   }
 
   static Future<void> stop() async {
-    if (defaultTargetPlatform != TargetPlatform.android) return;
+    if (!_isSupported) return;
+
     await _channel.invokeMethod('stop');
   }
 
   static Future<String> get versionName async {
-    if (defaultTargetPlatform != TargetPlatform.android) return '';
+    if (!_isSupported) return '';
+
     return await _channel.invokeMethod<String>('getVersionName') ?? '';
   }
 
   static Future<bool> waitForInitialization() async {
-    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    if (!_isSupported) return false;
+
     return await _channel.invokeMethod<bool>('waitForInitialization') ?? false;
   }
 }

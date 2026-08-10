@@ -10,13 +10,18 @@ class ConsentManager {
 
   static const MethodChannel _channel = const MethodChannel(CHANNEL_CONSENT);
 
+  static bool get _isSupported =>
+      defaultTargetPlatform == TargetPlatform.android ||
+      defaultTargetPlatform == TargetPlatform.iOS;
+
   static Future<bool> get canCollectPersonalData async {
-    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    if (!_isSupported) return false;
+
     return await _channel.invokeMethod<bool>('canCollectPersonalData') ?? false;
   }
 
   static Future<Map<String, dynamic>?> get data async {
-    if (defaultTargetPlatform != TargetPlatform.android) return null;
+    if (!_isSupported) return null;
 
     dynamic result = await _channel.invokeMethod('get');
 
@@ -24,7 +29,7 @@ class ConsentManager {
   }
 
   static Future<void> enableTcfMonitor(bool enable) async {
-    if (defaultTargetPlatform != TargetPlatform.android) return;
+    if (!_isSupported) return;
 
     Map<String, dynamic> values = {
       'enable': enable,
@@ -34,12 +39,14 @@ class ConsentManager {
   }
 
   static Future<bool> get exists async {
-    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    if (!_isSupported) return false;
+
     return await _channel.invokeMethod<bool>('exists') ?? false;
   }
 
   static Future<bool?> get isGranted async {
-    if (defaultTargetPlatform != TargetPlatform.android) return null;
+    if (!_isSupported) return null;
+
     return await _channel.invokeMethod<bool>('isGranted');
   }
 
@@ -64,7 +71,7 @@ class ConsentManager {
   }
 
   static Future<void> set(bool granted) async {
-    if (defaultTargetPlatform != TargetPlatform.android) return;
+    if (!_isSupported) return;
 
     Map<String, dynamic> values = {
       'granted': granted,
@@ -74,7 +81,7 @@ class ConsentManager {
   }
 
   static Future<void> setIabString(String value) async {
-    if (defaultTargetPlatform != TargetPlatform.android) return;
+    if (!_isSupported) return;
 
     Map<String, dynamic> values = {
       'value': value,
