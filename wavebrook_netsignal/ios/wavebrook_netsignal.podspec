@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.source_files     = 'wavebrook_netsignal/Sources/wavebrook_netsignal/**/*'
 
   s.dependency 'Flutter'
-  s.dependency 'WavebrookNetSignal', '1.0.0-beta.10'
+  s.dependency 'WavebrookNetSignal', '1.0.0'
 
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 end
