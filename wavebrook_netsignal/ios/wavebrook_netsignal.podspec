@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'wavebrook_netsignal'
-  s.version          = '1.2.0-beta.2'
+  s.version          = '1.2.0'
   s.summary          = 'Wavebrook NetSignal Flutter plugin'
   s.description      = 'Flutter bindings for the Wavebrook NetSignal iOS SDK.'
   s.homepage         = 'https://wavebrook.com'

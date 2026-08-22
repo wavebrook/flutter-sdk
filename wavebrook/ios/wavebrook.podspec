@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'wavebrook'
-  s.version          = '2.2.0-beta.1'
+  s.version          = '2.2.0'
   s.summary          = 'Wavebrook Flutter plugin'
   s.description      = 'Flutter bindings for the Wavebrook iOS SDK core.'
   s.homepage         = 'https://wavebrook.com'

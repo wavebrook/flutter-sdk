@@ -1,5 +1,5 @@
 group 'com.wavebrook.flutter'
-version '2.1.2'
+version '2.2.0'
 
 buildscript {
     ext.kotlin_version = '1.9.24'
