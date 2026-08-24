@@ -1,3 +1,8 @@
+## 1.2.0
+
+* Added iOS support (iOS 15+, CocoaPods and Swift Package Manager)
+* Updated to SDK 1.1.8 (Android)
+
 ## 1.1.7
 
 * Updated to SDK 1.1.7
