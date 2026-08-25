@@ -1,3 +1,7 @@
+## 2.2.1
+
+* Updated to SDK 2.1.4 (Android)
+
 ## 2.2.0
 
 * Added iOS support (iOS 13+, CocoaPods and Swift Package Manager)

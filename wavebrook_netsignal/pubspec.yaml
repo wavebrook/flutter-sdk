@@ -1,6 +1,6 @@
 name: wavebrook_netsignal
 description: Wavebrook NetSignal Flutter plugin
-version: 1.2.0
+version: 1.2.1
 homepage: https://wavebrook.com
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  wavebrook: ^2.2.0
+  wavebrook: ^2.2.1
 
 dev_dependencies:
   flutter_test:
