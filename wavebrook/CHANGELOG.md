@@ -1,3 +1,7 @@
+## 2.2.3
+
+* Updated to SDK 2.1.5 (Android)
+
 ## 2.2.2
 
 * Fixed the Android build on AGP 9 (built-in Kotlin)

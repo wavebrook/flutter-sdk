@@ -1,3 +1,7 @@
+## 1.2.3
+
+* Updated to SDK 1.1.10 (Android) and 1.0.1 (iOS)
+
 ## 1.2.2
 
 * Fixed the Android build on AGP 9 (built-in Kotlin)
