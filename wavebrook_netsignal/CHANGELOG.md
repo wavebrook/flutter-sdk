@@ -1,3 +1,7 @@
+## 1.2.4
+
+* Updated to SDK 1.1.11 (Android) and 1.0.2 (iOS)
+
 ## 1.2.3
 
 * Updated to SDK 1.1.10 (Android) and 1.0.1 (iOS)

@@ -1,3 +1,7 @@
+## 2.2.4
+
+* Updated to SDK 2.0.1 (iOS). The minimum iOS version is now 15.0
+
 ## 2.2.3
 
 * Updated to SDK 2.1.5 (Android)
