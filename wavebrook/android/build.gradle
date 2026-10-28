@@ -1,5 +1,5 @@
 group 'com.wavebrook.flutter'
-version '2.2.4'
+version '2.2.5'
 
 buildscript {
     ext.kotlin_version = '1.9.24'
@@ -70,5 +70,5 @@ if (agpMajor >= 9) {
 }
 
 dependencies {
-    implementation 'com.wavebrook:core:2.1.5'
+    implementation 'com.wavebrook:core:2.1.6'
 }
